@@ -23,4 +23,5 @@ Welcome to the repository for my web development internship at Oasis Infobyte! D
 Feel free to explore the projects and reach out if you have any questions or feedback. Thank you for visiting my internship repository!
 
 ---
-@internship @oasis_infobyte
+@internship @oasis_infobyte 
+oasisinfobyte.com
