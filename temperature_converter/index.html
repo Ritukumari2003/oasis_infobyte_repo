@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="number"] {
+            width: 200px;
+            padding: 8px;
+            font-size: 25px;
+            margin-right: 10px;
+        }
+
+        select {
+            padding: 8px;
+            margin: 30px;
+            font-size: 25px;
+        }
+
+        span {
+            font-size: 25px;
+        }
+
+        button {
+            padding: 8px 20px;
+            margin-top: 30px;
+            font-size: 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 30px;
+            font-size: 30px;
+            font-weight: 800;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Temperature Converter</h1>
+        <div>
+            <input type="number" id="temperature" placeholder="Temperature">
+            <select id="fromUnit">
+                <option value="celsius">Celsius</option>
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="kelvin">Kelvin</option>
+            </select>
+            <span>to</span>
+            <select id="toUnit">
+                <option value="celsius">Celsius</option>
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="kelvin">Kelvin</option>
+            </select>
+        </div>
+        <button onclick="convertTemperature()">Convert</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convertTemperature() {
+            var temperatureInput = parseFloat(document.getElementById('temperature').value);
+            var fromUnit = document.getElementById('fromUnit').value;
+            var toUnit = document.getElementById('toUnit').value;
+            var resultDisplay = document.getElementById('result');
+
+            if (isNaN(temperatureInput)) {
+                resultDisplay.textContent = "Please enter a valid number.";
+                return;
+            }
+
+            var convertedTemperature;
+
+            if (fromUnit === 'celsius' && toUnit === 'fahrenheit') {
+                convertedTemperature = (temperatureInput * 9 / 5) + 32;
+            } else if (fromUnit === 'celsius' && toUnit === 'kelvin') {
+                convertedTemperature = temperatureInput + 273.15;
+            } else if (fromUnit === 'fahrenheit' && toUnit === 'celsius') {
+                convertedTemperature = (temperatureInput - 32) * 5 / 9;
+            } else if (fromUnit === 'fahrenheit' && toUnit === 'kelvin') {
+                convertedTemperature = (temperatureInput - 32) * 5 / 9 + 273.15;
+            } else if (fromUnit === 'kelvin' && toUnit === 'celsius') {
+                convertedTemperature = temperatureInput - 273.15;
+            } else if (fromUnit === 'kelvin' && toUnit === 'fahrenheit') {
+                convertedTemperature = (temperatureInput - 273.15) * 9 / 5 + 32;
+            } else {
+                convertedTemperature = temperatureInput; // If same units are selected, return the same value
+            }
+
+            resultDisplay.textContent = "Converted temperature: " + convertedTemperature.toFixed(2) + " " + toUnit.toUpperCase();
+        }
+    </script>
+
+</body>
+
+</html>
